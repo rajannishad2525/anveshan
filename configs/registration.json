@@ -1,0 +1,15 @@
+{
+  "split": "train",
+  "transform_cases": [
+    {"name": "shift_2px", "dx": 2, "dy": 0, "angle_deg": 0, "scale": 1.0},
+    {"name": "shift_5px", "dx": 5, "dy": 0, "angle_deg": 0, "scale": 1.0},
+    {"name": "shift_10px", "dx": 10, "dy": 0, "angle_deg": 0, "scale": 1.0},
+    {"name": "rotate_2deg", "dx": 0, "dy": 0, "angle_deg": 2, "scale": 1.0},
+    {"name": "rotate_5deg", "dx": 0, "dy": 0, "angle_deg": 5, "scale": 1.0},
+    {"name": "scale_2pct", "dx": 0, "dy": 0, "angle_deg": 0, "scale": 1.02},
+    {"name": "scale_5pct", "dx": 0, "dy": 0, "angle_deg": 0, "scale": 1.05}
+  ],
+  "interpolation": "linear",
+  "border": "reflect",
+  "note": "Synthetic transform of the first-date image only; tests geometric recovery, not change-map accuracy."
+}

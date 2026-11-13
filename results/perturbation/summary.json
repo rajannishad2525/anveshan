@@ -1,0 +1,52 @@
+{
+  "config": {
+    "source_split": "train",
+    "tile_size_px": 64,
+    "n_chips": 50,
+    "seed": 20261010,
+    "brightness_multiplier": 1.15,
+    "haze_multiplier": 0.6,
+    "haze_offset": 90,
+    "seasonal_rgb_multiplier": [
+      1.2,
+      0.65,
+      0.8
+    ],
+    "shift_pixels": 2,
+    "screening_threshold_source": "results/oscd_full_v2/train_thresholds.json"
+  },
+  "threshold_train_only": 0.03691756725311279,
+  "cases": [
+    {
+      "perturbation": "identical",
+      "n": 50,
+      "flagged": 0,
+      "flagged_rate": 0.0
+    },
+    {
+      "perturbation": "brightness",
+      "n": 50,
+      "flagged": 3,
+      "flagged_rate": 0.06
+    },
+    {
+      "perturbation": "haze",
+      "n": 50,
+      "flagged": 44,
+      "flagged_rate": 0.88
+    },
+    {
+      "perturbation": "seasonal_colour_proxy",
+      "n": 50,
+      "flagged": 50,
+      "flagged_rate": 1.0
+    },
+    {
+      "perturbation": "registration_shift",
+      "n": 50,
+      "flagged": 2,
+      "flagged_rate": 0.04
+    }
+  ],
+  "limitation": "Synthetic transformations of training imagery, not independent real-cloud/season labels or onset evaluation."
+}

@@ -1,0 +1,16 @@
+\begin{table}[t]
+\caption{Full OSCD test-pair change screening (10 pairs, 663 tiles; thresholds from 14 train pairs).}
+\label{tab:oscd}
+\centering
+\begin{tabular}{lrrrr}
+\hline
+Method & AP & Prec. & Recall & TP/FP \\
+\hline
+All-positive / prevalence & 0.424 & 42.4\% & 100.0\% & 0 \\
+Seeded random ranking & 0.429 & -- & -- & -- \\
+Pixel difference & 0.492 & 48.0\% & 91.8\% & 258/279 \\
+RemoteCLIP distance & 0.475 & 48.7\% & 90.0\% & 253/267 \\
+RemoteCLIP + gate & 0.464 & 41.6\% & 73.7\% & 207/290 \\
+\hline
+\end{tabular}
+\end{table}

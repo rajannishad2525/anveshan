@@ -1,0 +1,5 @@
+dataset_or_archive,source,records,embedded,dated,with_crs,resolution,license_status,public_release
+OSCD RGB mirror,blanchon/OSCD_RGB (underlying OSCD by Daudt et al.),24 image pairs,not applicable,mirror omits dates,mirror omits CRS,Sentinel-2 RGB; exact mirror processing to verify,change-map license needs independent verification,do not redistribute mirror files before license review
+Noida retrieval probe,local Noida Sentinel-2 subset,56 chips,56,2026-07-12 recorded,source scene IDs available,10 m Sentinel-2 stated in local project,per-scene license record incomplete,internal evaluation only until verified
+ANVESHAN operator archive,mixed local sources including manual captures,165 scenes,59,120,87,mixed,per-batch license record incomplete,do not release captures or figures until verified
+AOI ranking probe,subset of ANVESHAN operator archive,121 scenes,not separately counted,not separately counted,not separately counted,mixed,same as operator archive,internal evaluation only

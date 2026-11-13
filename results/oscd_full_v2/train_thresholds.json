@@ -1,0 +1,12 @@
+{
+  "pixel": 0.050096701830625534,
+  "remoteclip": 0.03691756725311279,
+  "gated_remoteclip": 0.019069254398345947,
+  "gate_without_cloud": 0.02059614658355713,
+  "gate_without_haze": 0.019069254398345947,
+  "gate_without_shadow": 0.030559659004211426,
+  "gate_without_seasonal": 0.019069254398345947,
+  "gate_without_registration": 0.02059614658355713,
+  "gate_without_illumination": 0.019069254398345947,
+  "gate_without_radiometric": 0.029326915740966797
+}

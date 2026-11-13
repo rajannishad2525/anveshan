@@ -1,0 +1,53 @@
+{
+  "caveat": "All 56 labels are provisional one-reviewer judgments; this assumes the area-filtered ranking pool is exactly these 56 chips.",
+  "text_queries": [
+    {
+      "query": "closely packed residential buildings",
+      "relevant": 16,
+      "pool": 56,
+      "random_expected_p_at_5": 0.2857142857142857,
+      "observed_p_at_5": 0.4
+    },
+    {
+      "query": "agricultural fields and open farmland",
+      "relevant": 10,
+      "pool": 56,
+      "random_expected_p_at_5": 0.17857142857142858,
+      "observed_p_at_5": 0.0
+    },
+    {
+      "query": "a very large bright roof on an industrial building",
+      "relevant": 3,
+      "pool": 56,
+      "random_expected_p_at_5": 0.05357142857142857,
+      "observed_p_at_5": 0.4
+    }
+  ],
+  "image_queries": [
+    {
+      "query_local_id": 13,
+      "relevant_excluding_self": 15,
+      "pool_excluding_self": 55,
+      "random_expected_p_at_5": 0.2727272727272727,
+      "observed_p_at_5": 0.8
+    },
+    {
+      "query_local_id": 40,
+      "relevant_excluding_self": 9,
+      "pool_excluding_self": 55,
+      "random_expected_p_at_5": 0.16363636363636364,
+      "observed_p_at_5": 0.6
+    },
+    {
+      "query_local_id": 36,
+      "relevant_excluding_self": 2,
+      "pool_excluding_self": 55,
+      "random_expected_p_at_5": 0.03636363636363636,
+      "observed_p_at_5": 0.2
+    }
+  ],
+  "text_mean_random_expected_p_at_5": 0.1726190476190476,
+  "text_mean_observed_p_at_5": 0.26666666666666666,
+  "image_mean_random_expected_p_at_5": 0.15757575757575756,
+  "image_mean_observed_p_at_5": 0.5333333333333333
+}

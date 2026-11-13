@@ -1,0 +1,17 @@
+{
+  "dataset_root": "C:/Users/abcom/Downloads/anveshan/data/oscd",
+  "split": {
+    "calibration": "train",
+    "evaluation": "test"
+  },
+  "tile_size_px": 64,
+  "positive_mask_fraction_gt": 0.02,
+  "threshold_selection_recall": 0.8,
+  "bootstrap_resamples": 1000,
+  "random_rankings": 1000,
+  "seed": 20261010,
+  "batch_size": 16,
+  "torch_threads": 4,
+  "checkpoint": "models/RemoteCLIP-ViT-B-32.pt",
+  "policy": "No test-time tuning; thresholds are selected using the complete 14-pair train split and evaluated once on the 10-pair test split."
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "pair": "train_pair_00",
+    "tiles": 72,
+    "positives": 13,
+    "prevalence": 0.18055555555555555,
+    "remoteclip_ap": 0.21731633664614947,
+    "pixel_ap": 0.6629049398280167
+  },
+  {
+    "pair": "train_pair_01",
+    "tiles": 132,
+    "positives": 26,
+    "prevalence": 0.19696969696969696,
+    "remoteclip_ap": 0.22610361038617088,
+    "pixel_ap": 0.321553928399099
+  },
+  {
+    "pair": "train_pair_02",
+    "tiles": 40,
+    "positives": 14,
+    "prevalence": 0.35,
+    "remoteclip_ap": 0.728605557055358,
+    "pixel_ap": 0.7774663232582224
+  },
+  {
+    "pair": "train_pair_03",
+    "tiles": 180,
+    "positives": 44,
+    "prevalence": 0.24444444444444444,
+    "remoteclip_ap": 0.42602005028975193,
+    "pixel_ap": 0.7839210556014623
+  },
+  {
+    "pair": "train_pair_04",
+    "tiles": 56,
+    "positives": 12,
+    "prevalence": 0.21428571428571427,
+    "remoteclip_ap": 0.38681894042425347,
+    "pixel_ap": 0.6077666017228427
+  },
+  {
+    "pair": "train_pair_05",
+    "tiles": 56,
+    "positives": 9,
+    "prevalence": 0.16071428571428573,
+    "remoteclip_ap": 0.228836030384018,
+    "pixel_ap": 0.278488459885687
+  },
+  {
+    "pair": "train_pair_06",
+    "tiles": 168,
+    "positives": 53,
+    "prevalence": 0.31547619047619047,
+    "remoteclip_ap": 0.26987472258589623,
+    "pixel_ap": 0.7348901145954965
+  },
+  {
+    "pair": "train_pair_07",
+    "tiles": 80,
+    "positives": 22,
+    "prevalence": 0.275,
+    "remoteclip_ap": 0.46167232930167923,
+    "pixel_ap": 0.5563061264999953
+  },
+  {
+    "pair": "train_pair_08",
+    "tiles": 288,
+    "positives": 75,
+    "prevalence": 0.2604166666666667,
+    "remoteclip_ap": 0.2785683889552412,
+    "pixel_ap": 0.4528513982725272
+  },
+  {
+    "pair": "train_pair_09",
+    "tiles": 36,
+    "positives": 1,
+    "prevalence": 0.027777777777777776,
+    "remoteclip_ap": 0.04,
+    "pixel_ap": 0.09090909090909091
+  },
+  {
+    "pair": "train_pair_10",
+    "tiles": 104,
+    "positives": 30,
+    "prevalence": 0.28846153846153844,
+    "remoteclip_ap": 0.42220688697785014,
+    "pixel_ap": 0.5677665451706084
+  },
+  {
+    "pair": "train_pair_11",
+    "tiles": 90,
+    "positives": 12,
+    "prevalence": 0.13333333333333333,
+    "remoteclip_ap": 0.12368669918136349,
+    "pixel_ap": 0.1679907555481484
+  },
+  {
+    "pair": "train_pair_12",
+    "tiles": 30,
+    "positives": 1,
+    "prevalence": 0.03333333333333333,
+    "remoteclip_ap": 0.05263157894736842,
+    "pixel_ap": 0.3333333333333333
+  },
+  {
+    "pair": "train_pair_13",
+    "tiles": 144,
+    "positives": 46,
+    "prevalence": 0.3194444444444444,
+    "remoteclip_ap": 0.4556920442903595,
+    "pixel_ap": 0.3373031202497103
+  }
+]

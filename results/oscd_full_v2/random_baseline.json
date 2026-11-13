@@ -1,0 +1,11 @@
+{
+  "n": 663,
+  "positives": 281,
+  "prevalence": 0.4238310708898944,
+  "all_positive_precision": 0.4238310708898944,
+  "random_pr_reference_line": 0.4238310708898944,
+  "simulated_random_ap_mean": 0.4293203530787411,
+  "simulated_random_ap_sd": 0.01878108783183694,
+  "random_rankings": 1000,
+  "seed": 20261010
+}

@@ -1,0 +1,20 @@
+{
+  "seed": 20261010,
+  "resamples_requested": 1000,
+  "unit": "OSCD pair",
+  "n_pairs": 10,
+  "ap_95_percentile_ci": {
+    "pixel": [
+      0.2421343613226156,
+      0.812996859135719
+    ],
+    "remoteclip": [
+      0.25808467769058624,
+      0.7255635284240042
+    ]
+  },
+  "valid_draws": {
+    "pixel": 1000,
+    "remoteclip": 1000
+  }
+}

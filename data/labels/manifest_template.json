@@ -1,0 +1,6 @@
+{
+  "instructions": "Keep method names out of this file. Shuffle candidate order with a recorded seed before giving it to each reviewer. Image may be a data URL or a relative path packaged beside the HTML file.",
+  "items": [
+    {"query_id": "q001", "query_text": "Example: agricultural fields", "candidate_id": "c001", "image": "images/c001.png"}
+  ]
+}

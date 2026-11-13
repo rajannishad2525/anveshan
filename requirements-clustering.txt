@@ -1,0 +1,4 @@
+# Additional staged dependency for place matching. Install during setup,
+# never download during the offline demonstration.
+# OpenCV is Apache-2.0: https://github.com/opencv/opencv/blob/4.13.0/LICENSE
+opencv-python-headless==4.13.0.92

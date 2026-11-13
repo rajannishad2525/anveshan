@@ -1,0 +1,140 @@
+{
+  "patches": 16200,
+  "classes": 10,
+  "prompt": "a satellite image of {}",
+  "text": {
+    "per_class": {
+      "annual crop fields": {
+        "ap": 0.21834375784370436,
+        "prevalence": 0.11055555555555556,
+        "p@10": 0.0,
+        "p@50": 0.04
+      },
+      "a forest": {
+        "ap": 0.06707977768140096,
+        "prevalence": 0.11030864197530864,
+        "p@10": 0.0,
+        "p@50": 0.02
+      },
+      "herbaceous vegetation": {
+        "ap": 0.1562449483538621,
+        "prevalence": 0.11104938271604939,
+        "p@10": 0.0,
+        "p@50": 0.14
+      },
+      "a highway": {
+        "ap": 0.23838516905818302,
+        "prevalence": 0.09290123456790124,
+        "p@10": 0.5,
+        "p@50": 0.46
+      },
+      "industrial buildings": {
+        "ap": 0.8178083991654426,
+        "prevalence": 0.09209876543209876,
+        "p@10": 1.0,
+        "p@50": 1.0
+      },
+      "a pasture": {
+        "ap": 0.3068496020902375,
+        "prevalence": 0.07376543209876543,
+        "p@10": 0.9,
+        "p@50": 0.7
+      },
+      "permanent crop plantations": {
+        "ap": 0.3439385915242131,
+        "prevalence": 0.09141975308641975,
+        "p@10": 0.9,
+        "p@50": 0.76
+      },
+      "residential buildings": {
+        "ap": 0.4455484904643426,
+        "prevalence": 0.115,
+        "p@10": 0.4,
+        "p@50": 0.3
+      },
+      "a river": {
+        "ap": 0.6103049933069741,
+        "prevalence": 0.09012345679012346,
+        "p@10": 1.0,
+        "p@50": 0.96
+      },
+      "a sea or lake": {
+        "ap": 0.10253919766534711,
+        "prevalence": 0.11277777777777778,
+        "p@10": 0.3,
+        "p@50": 0.16
+      }
+    },
+    "mAP": 0.3307042927153708,
+    "mean_p@10": 0.5,
+    "chance_mAP": 0.1
+  },
+  "image": {
+    "queries_per_class": 50,
+    "per_class": {
+      "annual crop fields": {
+        "map": 0.5545878892478806,
+        "p@10": 0.872,
+        "prevalence": 0.11055555555555556
+      },
+      "a forest": {
+        "map": 0.7562575171562439,
+        "p@10": 0.99,
+        "prevalence": 0.11030864197530864
+      },
+      "herbaceous vegetation": {
+        "map": 0.5406303111349025,
+        "p@10": 0.912,
+        "prevalence": 0.11104938271604939
+      },
+      "a highway": {
+        "map": 0.4361116935522628,
+        "p@10": 0.806,
+        "prevalence": 0.09290123456790124
+      },
+      "industrial buildings": {
+        "map": 0.7472007728603519,
+        "p@10": 0.99,
+        "prevalence": 0.09209876543209876
+      },
+      "a pasture": {
+        "map": 0.3927781073904737,
+        "p@10": 0.828,
+        "prevalence": 0.07376543209876543
+      },
+      "permanent crop plantations": {
+        "map": 0.3948373000639344,
+        "p@10": 0.8119999999999998,
+        "prevalence": 0.09141975308641975
+      },
+      "residential buildings": {
+        "map": 0.8292469030297889,
+        "p@10": 0.98,
+        "prevalence": 0.115
+      },
+      "a river": {
+        "map": 0.41196805301492573,
+        "p@10": 0.802,
+        "prevalence": 0.09012345679012346
+      },
+      "a sea or lake": {
+        "map": 0.8279055375780547,
+        "p@10": 0.972,
+        "prevalence": 0.11277777777777778
+      }
+    },
+    "mAP": 0.5891524085028819,
+    "mean_p@10": 0.8963999999999999,
+    "chance_mAP": 0.1
+  },
+  "network_attempts": [],
+  "elapsed_s": 2358.5593581199646,
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu_count": 8,
+    "torch": "2.14.0+cpu",
+    "cuda_available": false
+  },
+  "checkpoint_sha256": "60014e395d930a3f2963d1d89c8522bf4ad56775571e4356e866864789af85c4",
+  "data_sha256": "e4ee70060419d04a605003d9dba17571f788d665a367bf822bbda70834f4da8b"
+}

@@ -1,0 +1,15 @@
+n,folder,location,centre_lat,centre_lon,demonstrates,ps_clause,set
+1,01_jewar_airport,"Noida International Airport, Jewar (UP)",28.12,77.55,"Farmland to runway and terminal, from 2021",2.2.2 construction / appearance,core
+2,02_dholera_sir,Dholera SIR (Gujarat),22.24,72.18,A full road grid laid across salt flats,2.2.2 road development,extended
+3,03_delhi_mumbai_expressway_dausa,"Delhi-Mumbai Expressway, Dausa segment",26.9,76.3,2019 to 2024 linear corridor across open land,2.2.2 road (ideal for the transect tool),core
+4,04_sardar_sarovar,Sardar Sarovar reservoir (Gujarat),21.83,73.75,Reservoir filling and drawdown,2.2.2 expansion / contraction,core
+5,05_sambhar_salt_lake,Sambhar Salt Lake (Rajasthan),26.9,75.1,Seasonal wet to dry swing,2.2.2 water-extent variation,extended
+6,06_singrauli_coalfield,Singrauli coalfield (MP / UP),24.1,82.6,Forest to open-cast mine,2.2.2 clearance / disappearance,core
+7,07_ludhiana_farm_belt,Ludhiana farm belt (Punjab),31.01,75.85,"Wheat to bare to paddy - scene changes, ground does not",2.2.3 the negative set,core
+8,08_majuli_brahmaputra,Majuli / Brahmaputra (Assam),26.88,94.12,Annual flood: water arrives and leaves,2.2.3 temporary change,extended
+9,09_leh_himalaya,Leh / Himalaya,34.2,77.6,Seasonal snow cover,2.2.3 snow confounder,core
+10,10_mundra_port,Mundra Port (Gujarat),22.75,69.7,"Harbour, quays, storage tanks",2.2.1 semantic variety,extended
+11,11_jamnagar_refinery,Jamnagar refinery (Gujarat),22.34,69.86,Heavy industrial,2.2.1 + 2.2.4 clustering,extended
+12,12_corbett_forest,Corbett / Western Ghats,29.5,78.9,Continuous forest canopy,2.2.1 forest class,extended
+13,13_thar_jaisalmer,Thar desert (Jaisalmer),26.9,70.9,Dunes; strong shadow and illumination variation,2.2.1 + 2.2.3,extended
+14,14_chilika_lake,Chilika Lake (Odisha),19.7,85.3,Coastal wetland,2.2.1,extended

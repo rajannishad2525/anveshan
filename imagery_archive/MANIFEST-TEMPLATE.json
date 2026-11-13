@@ -1,0 +1,38 @@
+{
+  "scene_id": "AOI07_LISS4_2024-03-18",
+  "aoi": {
+    "index": 7,
+    "slug": "ludhiana_farm_belt",
+    "centre_lat": 30.9,
+    "centre_lon": 75.85
+  },
+  "datetime": "2024-03-18T05:42:11Z",
+  "acquisition_date": "2024-03-18",
+  "sensor": "ResourceSat-2A LISS-4",
+  "platform": "ResourceSat-2A",
+  "bands": [
+    "green",
+    "red",
+    "nir"
+  ],
+  "band_files": {
+    "green": "B2.tif",
+    "red": "B3.tif",
+    "nir": "B4.tif"
+  },
+  "gsd_m": 5.8,
+  "crs": "EPSG:32643",
+  "tile_size_px": 1024,
+  "cloud_cover_pct": 4.0,
+  "quality_flag": "clear",
+  "_quality_flag_values": [
+    "clear",
+    "hazy",
+    "partly_clouded",
+    "snow"
+  ],
+  "source": "Bhoonidhi - ISRO EO Data Hub, bhoonidhi.nrsc.gov.in",
+  "licence": "Open data (ResourceSat 5 m and coarser)",
+  "download_utc": "2026-09-13T00:00:00Z",
+  "notes": "Free text. Say here if the scene is deliberately hazy / a seasonal negative."
+}

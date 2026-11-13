@@ -1,0 +1,20 @@
+\begin{table}[t]
+\caption{Exploratory fixed-rule ablation; each score cutoff selected on 14 training pairs.}
+\label{tab:gate}
+\centering
+\begin{tabular}{lrrr}
+\hline
+Variant & Prec. & Recall & TP/FP \\
+\hline
+All-positive / prevalence & 42.4\% & 100.0\% & -- \\
+gated remoteclip & 41.6\% & 73.7\% & 207/290 \\
+gate without cloud & 42.1\% & 73.7\% & 207/285 \\
+gate without haze & 41.6\% & 73.7\% & 207/290 \\
+gate without shadow & 45.3\% & 83.6\% & 235/284 \\
+gate without seasonal & 41.6\% & 73.7\% & 207/290 \\
+gate without registration & 42.0\% & 73.7\% & 207/286 \\
+gate without illumination & 41.6\% & 73.7\% & 207/290 \\
+gate without radiometric & 46.8\% & 79.4\% & 223/253 \\
+\hline
+\end{tabular}
+\end{table}

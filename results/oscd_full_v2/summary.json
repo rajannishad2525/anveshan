@@ -1,0 +1,154 @@
+{
+  "n_train_pairs": 14,
+  "n_test_pairs": 10,
+  "train_tiles": 1476,
+  "test_tiles": 663,
+  "test_positives": 281,
+  "test_prevalence": 0.4238310708898944,
+  "thresholds_train_only": {
+    "pixel": 0.050096701830625534,
+    "remoteclip": 0.03691756725311279,
+    "gated_remoteclip": 0.019069254398345947,
+    "gate_without_cloud": 0.02059614658355713,
+    "gate_without_haze": 0.019069254398345947,
+    "gate_without_shadow": 0.030559659004211426,
+    "gate_without_seasonal": 0.019069254398345947,
+    "gate_without_registration": 0.02059614658355713,
+    "gate_without_illumination": 0.019069254398345947,
+    "gate_without_radiometric": 0.029326915740966797
+  },
+  "random_pr_reference_line": 0.4238310708898944,
+  "all_positive_precision": 0.4238310708898944,
+  "gate_rule_thresholds_preexisting": {
+    "cloud": 0.5,
+    "haze": 0.3,
+    "shadow": 0.3,
+    "seasonal": 0.3,
+    "registration": 0.3,
+    "illumination": 0.3,
+    "radiometric": 0.3
+  },
+  "methods": {
+    "pixel": {
+      "ap": 0.4915467531507458,
+      "precision": 0.48044692737430167,
+      "recall": 0.9181494661921709,
+      "tn_fp_fn_tp": [
+        103,
+        279,
+        23,
+        258
+      ]
+    },
+    "remoteclip": {
+      "ap": 0.4746172125750213,
+      "precision": 0.48653846153846153,
+      "recall": 0.900355871886121,
+      "tn_fp_fn_tp": [
+        115,
+        267,
+        28,
+        253
+      ]
+    },
+    "gated_remoteclip": {
+      "ap": 0.46415691535496895,
+      "precision": 0.4164989939637827,
+      "recall": 0.7366548042704626,
+      "tn_fp_fn_tp": [
+        92,
+        290,
+        74,
+        207
+      ]
+    },
+    "gate_without_cloud": {
+      "ap": 0.46415691535496895,
+      "precision": 0.42073170731707316,
+      "recall": 0.7366548042704626,
+      "tn_fp_fn_tp": [
+        97,
+        285,
+        74,
+        207
+      ]
+    },
+    "gate_without_haze": {
+      "ap": 0.46415691535496895,
+      "precision": 0.4164989939637827,
+      "recall": 0.7366548042704626,
+      "tn_fp_fn_tp": [
+        92,
+        290,
+        74,
+        207
+      ]
+    },
+    "gate_without_shadow": {
+      "ap": 0.44906001258651645,
+      "precision": 0.4527938342967245,
+      "recall": 0.8362989323843416,
+      "tn_fp_fn_tp": [
+        98,
+        284,
+        46,
+        235
+      ]
+    },
+    "gate_without_seasonal": {
+      "ap": 0.46415691535496895,
+      "precision": 0.4164989939637827,
+      "recall": 0.7366548042704626,
+      "tn_fp_fn_tp": [
+        92,
+        290,
+        74,
+        207
+      ]
+    },
+    "gate_without_registration": {
+      "ap": 0.4636712118628507,
+      "precision": 0.4198782961460446,
+      "recall": 0.7366548042704626,
+      "tn_fp_fn_tp": [
+        96,
+        286,
+        74,
+        207
+      ]
+    },
+    "gate_without_illumination": {
+      "ap": 0.46415691535496895,
+      "precision": 0.4164989939637827,
+      "recall": 0.7366548042704626,
+      "tn_fp_fn_tp": [
+        92,
+        290,
+        74,
+        207
+      ]
+    },
+    "gate_without_radiometric": {
+      "ap": 0.48255066971887267,
+      "precision": 0.4684873949579832,
+      "recall": 0.7935943060498221,
+      "tn_fp_fn_tp": [
+        129,
+        253,
+        58,
+        223
+      ]
+    }
+  },
+  "network_attempts": [],
+  "elapsed_s": 452.831027507782,
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu_count": 8,
+    "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+    "torch": "2.14.0+cpu",
+    "sklearn": "1.9.0",
+    "cuda_available": false
+  },
+  "checkpoint_sha256": "60014e395d930a3f2963d1d89c8522bf4ad56775571e4356e866864789af85c4"
+}

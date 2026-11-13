@@ -1,0 +1,50 @@
+.venv/
+.uv-cache/
+.pytest_cache/
+__pycache__/
+*.pyc
+datasets/
+models/
+demo_data/
+reality_check/
+_docx_media_inspect/
+*.sqlite3*
+*.db
+*.log
+*.pdf
+*.docx
+tests/_fixture/
+.tools/
+node_modules/
+benchmark-output/
+cold-bench/
+
+# Local test runs
+.pytest-run-*/
+
+# Large local imagery/data artifacts. Keep reproducible docs/scripts in git instead.
+imagery_archive/*
+!imagery_archive/README.md
+!imagery_archive/CORRECTIONS.md
+!imagery_archive/AOI-INDEX.csv
+!imagery_archive/MANIFEST-TEMPLATE.json
+!imagery_archive/_tools/
+!imagery_archive/_tools/**
+imagery_archive_previews/
+False_Alarms_*.pptx
+
+# Local agent/skill scratch files
+skills/
+
+# Local report-review screenshots and pytest scratch (not source)
+_review_snapshots/
+.pytest-tmp/
+
+# Report-editing scratch scripts (college-specific wording)
+college_scope_edit.py
+revise_anveshan_report.py
+CLAUDE.md
+HANDOFF-FOR-CODEX.md
+build_anveshan_report.py
+build_ieee_paper.py
+college_scope_polish.py

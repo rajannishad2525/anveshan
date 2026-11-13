@@ -1,0 +1,115 @@
+\documentclass[conference,a4paper]{IEEEtran}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\title{ANVESHAN: An Offline Satellite Retrieval and Change-Screening Workstation\thanks{College mini-project research manuscript. This is not an accepted or published IEEE paper.}}
+\author{\IEEEauthorblockN{Raman Pratap Singh and Rajan Nishad}
+\IEEEauthorblockA{Department of Computer Science and Engineering\\
+Greater Noida Institute of Technology\\Greater Noida, Uttar Pradesh, India}}
+\begin{document}
+\maketitle
+\begin{abstract}
+Offline satellite archives require content-based search and careful interpretation of multi-date imagery. We present ANVESHAN, a local workstation that combines staged RemoteCLIP embeddings, exact vector search, source metadata, image registration, change screening, and analyst review. We evaluate a full public 14-pair training and 10-pair test split of the RGB Onera Satellite Change Detection mirror using complete $64\times64$ tiles. The 663 test tiles contain 281 positives (42.4\% prevalence). On this split, a simple pixel-difference baseline obtains average precision (AP) 0.492, RemoteCLIP distance 0.475, and a pre-existing heuristic gate applied to RemoteCLIP 0.464; 1,000 seeded random rankings average 0.429. Thus the larger evaluation does not support a claim that the embedding or gate outperforms pixel difference. A separate provisional 56-chip retrieval probe gives mean Precision@5 of 26.7\% for text and 53.3\% for image examples, versus concept-prevalence chance expectations of 17.3\% and 15.8\%, respectively. The results support a transparent diagnostic prototype, but not reliable automatic change acceptance or measured analyst benefit. We provide local evaluation scripts and specify the independent labels and licensing checks still needed for publication-level claims.
+\end{abstract}
+\begin{IEEEkeywords}
+change screening, offline systems, provenance, remote sensing, satellite image retrieval
+\end{IEEEkeywords}
+
+\section{Introduction}
+Satellite archives can be filtered by date, sensor, and location, but these fields do not directly answer visual questions. Contrastive vision--language models permit text-to-image ranking \cite{radford2021clip,liu2024remoteclip}; a ranking score, however, is not a probability that a scene is relevant. Multi-date imagery presents another problem: illumination, phenology, cloud, and registration differences can create apparent change without the target land-surface event \cite{cheng2023survey,daudt2018urban}. ANVESHAN integrates search and change screening in an offline workstation while retaining image and processing evidence for inspection.
+
+The research question is whether an off-the-shelf remote-sensing encoder provides a useful search and binary change-screening signal in the available local data. This paper contributes (i) an evidence-aware local system design, (ii) a complete public-split OSCD RGB screening evaluation with simple and random baselines, and (iii) a failure analysis that changes the claim made by an earlier three-pair pilot. We do not claim a new encoder, a trained change detector, an operational change taxonomy, or improved analyst performance.
+
+\section{Related Work}
+CLIP learns aligned language and image representations \cite{radford2021clip}; RemoteCLIP adapts the approach to remote-sensing imagery \cite{liu2024remoteclip}. GeoRSCLIP and related work further study domain-specific training \cite{zhang2023rs5m}. Retrieval surveys describe conventional, cross-modal, and interactive remote-sensing search \cite{li2021survey}. We use the released RemoteCLIP ViT-B/32 checkpoint as an existing component rather than proposing a foundation model.
+
+OSCD contains urban-change masks for Sentinel-2 image pairs \cite{daudt2018urban}. Learned Siamese and transformer detectors offer stronger task-specific alternatives \cite{daudt2018siamese,chen2022bit,bandara2022changeformer}, but they are not evaluated as matched baselines here. The system uses feature-based registration before comparing scenes; SIFT and robust model fitting motivate that component \cite{lowe2004sift,fischler1981ransac}. Exact search on normalized vectors uses FAISS \cite{douze2026faiss}. These are established methods; our contribution is their local integration and an honest measurement of failure modes on the staged data.
+
+\section{System Design}
+\begin{figure}[t]
+\centering\includegraphics[width=\columnwidth]{../figures/architecture.pdf}
+\caption{ANVESHAN's local evidence path. A ranking or screening candidate remains reviewable rather than becoming an automatic verified change.}
+\label{fig:architecture}
+\end{figure}
+ANVESHAN comprises a FastAPI service, local HTML/JavaScript interface, SQLite metadata, staged imagery, and staged model weights. Ingestion preserves available source hashes, acquisition tags, coordinate reference system (CRS), bounds, and affine transform. Unknown properties remain unknown. A screened subset of image records receives RemoteCLIP embeddings; the normalized vectors are ranked by exact inner product. A separate deterministic RGB histogram index serves as a nonsemantic visual baseline, not as a learned embedding. FAISS performs the semantic vector lookup \cite{douze2026faiss}.
+
+For normalized query vector $q$ and candidate vector $v_i$, the ranking score is
+\begin{equation} s_i=q^\top v_i. \end{equation}
+This cosine similarity orders candidates but is not calibrated as confidence. Area-of-interest filters require real georeferencing, and a scene without CRS cannot satisfy a geographic filter. Before/after comparison attempts RootSIFT matching and RANSAC homography estimation. Failure to register causes the system to decline a change conclusion rather than forcing a label. Review decisions and source/processing context are retained. The implemented review screen is a proposed workflow; no user study demonstrates that it improves analyst speed or accuracy.
+
+\section{Experimental Setup}
+\subsection{Datasets and boundaries}
+The change experiment uses the locally staged \texttt{blanchon/OSCD\_RGB} mirror. Its public split has 14 training and 10 test pairs. We treat pair as the split and bootstrap unit; all complete, nonoverlapping $64\times64$ tiles from a pair remain together. A tile is positive when more than 2\% of mask pixels are nonzero:
+\begin{equation} y_t=\mathbb{1}\left[\frac{1}{|t|}\sum_{p\in t}m_p>0.02\right]. \end{equation}
+The train split contains 1,476 tiles. The 10 test pairs contain 663 tiles, including 281 positives. The mirror omits city/date/CRS metadata, so this test does not evaluate geospatial filtering or event onset. Its distribution and underlying labels require a separate licence review before public redistribution. Original Sentinel-2 product access and mirror redistribution are distinct rights \cite{esa2026sentinel,daudt2018urban}.
+
+The older Noida retrieval probe reviewed 56 chips with three text and three image-example queries. One reviewer supplied provisional relevance lists before ranking. We report those numbers only as a development observation. A separate 12-query area-of-interest probe was iteratively used to select retrieval variants and is likewise not an untouched test set. Counts from these archives are never pooled with OSCD counts.
+
+\subsection{Methods, metrics, and freeze rule}
+The embedding change score is $1-\cos(e_{\rm before},e_{\rm after})$; pixel difference is the original project's simple score. A pre-existing seven-rule gate declines candidates classified as cloud, haze, shadow, seasonal, registration, illumination, or radiometric confounders. Its internal thresholds predate this experiment; their original selection history is unknown. The cutoff on each method's score was selected on all 14 training pairs for at least 80\% recall, then applied once to the 10 test pairs. We predeclared seven leave-one-rule-out exploratory variants and logged every raw rule score. The gate is not presented as a confirmatory improvement.
+
+For a fixed cutoff, precision and recall are
+\begin{equation} P=\frac{TP}{TP+FP},\qquad R=\frac{TP}{TP+FN}. \end{equation}
+Average precision (AP) is computed with \texttt{sklearn.metrics.average\_precision\_score}. Positive prevalence is the horizontal random precision--recall reference line; finite-sample random AP is estimated from 1,000 seeded random rankings. Pair-cluster bootstrap intervals use 1,000 resamples of whole test pairs, not tiles. Retrieval Precision@$k$ is the fraction of relevant candidates among the first $k$. The chance expectation in a fully judged pool is the concept's relevant fraction, not automatically $k$ divided by archive size.
+
+\section{Results}
+\subsection{Full OSCD change screening}
+\begin{figure}[t]
+\centering\includegraphics[width=\columnwidth]{../figures/oscd_pr_curve.pdf}
+\caption{Full public OSCD test precision--recall curves; the dashed horizontal line is positive prevalence, not a fitted random model.}
+\label{fig:pr}
+\end{figure}
+\begin{table}[t]
+\caption{Full OSCD test split: 10 pairs and 663 tiles. Cutoffs selected on 14 train pairs.}
+\label{tab:oscd}\centering\footnotesize
+\begin{tabular}{lrrrr}\toprule
+Method & AP & Prec. & Recall & TP/FP\\\midrule
+All-positive & -- & 42.4\% & 100\% & 281/382\\
+Random rank (1,000) & 0.429 & -- & -- & --\\
+Pixel difference & 0.492 & 48.0\% & 91.8\% & 258/279\\
+RemoteCLIP distance & 0.475 & 48.7\% & 90.0\% & 253/267\\
+RemoteCLIP + gate & 0.464 & 41.6\% & 73.7\% & 207/290\\\bottomrule
+\end{tabular}
+\end{table}
+Table~\ref{tab:oscd} reverses the impression from the earlier three-test-pair pilot. On the full 10-pair public test split, pixel difference has higher AP than RemoteCLIP distance. The gate loses 46 true positives relative to ungated RemoteCLIP and yields lower precision as well as lower recall at its own train-selected cutoff. This is not a fair same-recall superiority comparison; the direct conclusion is simply that the deployed heuristic rule set is not supported by this larger evaluation. Pair-bootstrap 95\% AP intervals are 0.242--0.813 for pixel difference and 0.258--0.726 for RemoteCLIP, reflecting large across-pair variation. No statistical ranking claim follows from these overlapping, wide intervals.
+
+\subsection{Retrieval and geometric checks}
+The provisional 56-chip Noida text probe gives mean Precision@5 26.7\%, against 17.3\% chance expectation from per-query relevant fractions. Image-example queries excluding self give 53.3\% versus 15.8\%. These are six one-reviewer queries, not an independent retrieval benchmark. The tuned 12-query area-of-interest probe reaches 75.0\% top-5 but only 33.3\% top-1 target-AOI identity; its results are development measurements because variants were selected on those same queries.
+
+A synthetic same-date registration check applied seven shifts, rotations, or scales to each of 14 training-pair first-date images. RootSIFT--RANSAC accepted all 98 transformed cases; median corner-recovery error among successes was below 0.05 pixels for each tested case. This checks recovery of known synthetic geometry, not the quality of real before/after change decisions. A separate fixed sample of 50 training-image chips was compared with unchanged copies and four synthetic nuisance variants at the train-selected RemoteCLIP threshold. The unchanged control flagged 0/50; brightness $\times1.15$ flagged 3/50; synthetic haze flagged 44/50; a seasonal-colour proxy flagged 50/50; and a two-pixel shift flagged 2/50. These are controlled perturbations of real pixels, not independent real cloud or seasonal observations.
+\begin{figure}[t]
+\centering\includegraphics[width=\columnwidth]{../figures/perturbation_flags.pdf}
+\caption{Change-screen flags under fixed synthetic perturbations of 50 training-image chips.}
+\label{fig:perturbation}
+\end{figure}
+
+\section{Discussion}
+The main measured finding is negative: a domain-specific vision--language embedding does not automatically beat simple pixel difference as a change-screening score on this RGB OSCD protocol. The test prevalence of 42.4\% also means that a 41.6\% gated precision is below an all-positive precision baseline. A learned model's broad semantic training objective and a 10-m Sentinel-2 tile upsampled to a 224-pixel encoder input need not preserve the local cues needed for urban-change detection. This is a plausible domain-gap explanation, not a causal conclusion without matched CLIP, resizing, and contrast ablations.
+
+The workstation remains an engineering prototype for local search and evidence presentation, but the current experiments do not establish reliable autonomous change acceptance. The 88\% haze-proxy and 100\% seasonal-colour-proxy flag rates make the nuisance problem concrete, although they do not estimate real acquisition false-alarm rates. A human study is also absent. The pre-existing gate must be redesigned and calibrated strictly on development data before a new untouched test. A new test set should separate geography and acquisition times at scene level, include real cloud, haze, seasonal and alignment negatives, and use independent relevance judgments. A trained change-specific baseline and plain CLIP comparison are required before model-family conclusions.
+
+\section{Limitations and Threats to Validity}
+OSCD RGB is a processed mirror; its labels focus on urban change and cannot validate operational change classes. Test images were public and already available to the project. Tiles within a pair are correlated, so raw tile count is not an independent sample size. The gate's internal rule cutoffs have unverified historical selection. Retrieval uses only three queries per mode and one reviewer; the 12-query AOI probe was tuned during development. Synthetic registration and nuisance tests cannot replace real acquisition failures. Some operator-archive images are manual captures without reliable dates, CRS, or publication rights and are excluded from public figures. No licensed code/data release, DOI, external user study, or venue-specific acceptance review has yet been completed.
+
+\section{Conclusion and Future Work}
+ANVESHAN integrates offline retrieval, geometric checks, candidate change screening, and review evidence. Full-split OSCD results show that pixel difference AP 0.492 exceeds RemoteCLIP AP 0.475, while a pre-existing gate reduces AP to 0.464 and misses more positives. The honest research contribution is a reproducible diagnostic assessment and a traceable prototype, not a validated detector. The next study needs independently frozen retrieval labels, matched model baselines, a train-calibrated quality gate, real-world robustness tests, and clear data rights before any indexed-venue submission.
+
+\section*{Data and Code Availability}
+Scripts, frozen JSON/CSV outputs, and source metadata are staged in the local project submission. Raw mirror imagery and capture-derived scenes are not released here pending licence review. No public repository or archival DOI is claimed.
+
+\begin{thebibliography}{99}
+\bibitem{radford2021clip} A. Radford \emph{et al.}, ``Learning transferable visual models from natural language supervision,'' in \emph{Proc. ICML}, 2021, pp. 8748--8763.
+\bibitem{liu2024remoteclip} F. Liu \emph{et al.}, ``RemoteCLIP: A vision language foundation model for remote sensing,'' \emph{IEEE Trans. Geosci. Remote Sens.}, vol. 62, 2024, doi:10.1109/TGRS.2024.3390838.
+\bibitem{zhang2023rs5m} Z. Zhang, T. Zhao, Y. Guo, and J. Yin, ``RS5M and GeoRSCLIP: A large scale vision-language dataset and a large vision-language model for remote sensing,'' arXiv:2306.11300, 2023.
+\bibitem{li2021survey} Y. Li, J. Ma, and Y. Zhang, ``Image retrieval from remote sensing big data: A survey,'' \emph{Information Fusion}, vol. 67, pp. 94--115, 2021, doi:10.1016/j.inffus.2020.10.008.
+\bibitem{daudt2018urban} R. C. Daudt, B. Le Saux, A. Boulch, and Y. Gousseau, ``Urban change detection for multispectral earth observation using convolutional neural networks,'' in \emph{Proc. IEEE IGARSS}, 2018.
+\bibitem{daudt2018siamese} R. C. Daudt, B. Le Saux, and A. Boulch, ``Fully convolutional Siamese networks for change detection,'' in \emph{Proc. IEEE ICIP}, 2018, pp. 4063--4067, doi:10.1109/ICIP.2018.8451652.
+\bibitem{chen2022bit} H. Chen, Z. Qi, and Z. Shi, ``Remote sensing image change detection with transformers,'' \emph{IEEE Trans. Geosci. Remote Sens.}, vol. 60, art. 5607514, 2022, doi:10.1109/TGRS.2021.3095166.
+\bibitem{bandara2022changeformer} W. G. C. Bandara and V. M. Patel, ``A transformer-based Siamese network for change detection,'' arXiv:2201.01293, 2022.
+\bibitem{lowe2004sift} D. G. Lowe, ``Distinctive image features from scale-invariant keypoints,'' \emph{Int. J. Comput. Vis.}, vol. 60, no. 2, pp. 91--110, 2004.
+\bibitem{fischler1981ransac} M. A. Fischler and R. C. Bolles, ``Random sample consensus: A paradigm for model fitting with applications to image analysis and automated cartography,'' \emph{Commun. ACM}, vol. 24, no. 6, pp. 381--395, 1981, doi:10.1145/358669.358692.
+\bibitem{douze2026faiss} M. Douze \emph{et al.}, ``The Faiss library,'' \emph{IEEE Trans. Big Data}, vol. 12, no. 2, 2026, doi:10.1109/TBDATA.2025.3618474.
+\bibitem{cheng2023survey} G. Cheng \emph{et al.}, ``Change detection methods for remote sensing in the last decade: A comprehensive review,'' arXiv:2305.05813, 2023.
+\bibitem{esa2026sentinel} Copernicus Data Space Ecosystem, ``Sentinel-2 data collection and access policy,'' accessed Oct. 2026. [Online]. Available: https://dataspace.copernicus.eu/data-collections/copernicus-sentinel-missions/sentinel-2
+\end{thebibliography}
+\end{document}

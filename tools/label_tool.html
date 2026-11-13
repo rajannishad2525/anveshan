@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>ANVESHAN blind relevance review</title>
+<style>
+body{font:16px system-ui;max-width:1000px;margin:2rem auto;color:#172236}header{padding:1rem;background:#eaf0f7}img{width:180px;height:180px;object-fit:contain;background:#eee}article{display:flex;gap:1rem;border-bottom:1px solid #ccc;padding:1rem 0}button,select,input{font:inherit;padding:.35rem}small{color:#555}
+</style>
+<header><h1>Blind relevance review</h1><p>Load a manifest, judge each result independently, then export CSV. Candidate method names are intentionally hidden.</p>
+<label>Reviewer pseudonym <input id="reviewer" placeholder="reviewer-1"></label>
+<label>Manifest JSON <input id="manifest" type="file" accept="application/json"></label>
+<button id="export" disabled>Export labels CSV</button></header>
+<main id="content"></main>
+<script>
+let items=[];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.getElementById('manifest').onchange=async e=>{
+  const data=JSON.parse(await e.target.files[0].text());
+  if(!Array.isArray(data.items)||data.items.some(x=>!x.query_id||!x.candidate_id||!x.image))throw Error('Manifest needs items with query_id, candidate_id, image');
+  items=data.items;
+  document.getElementById('content').innerHTML=items.map((x,i)=>`<article><img src="${esc(x.image)}" alt="Candidate image"><div><strong>${esc(x.query_text||x.query_id)}</strong><br><small>Candidate ${esc(x.candidate_id)}</small><p><label>Judgment <select data-i="${i}"><option value="">Choose</option><option value="1">Relevant</option><option value="0">Not relevant</option><option value="u">Unusable/uncertain</option></select></label></p></div></article>`).join('');
+  document.getElementById('export').disabled=false;
+};
+document.getElementById('export').onclick=()=>{
+  const reviewer=document.getElementById('reviewer').value.trim();if(!reviewer){alert('Enter reviewer pseudonym');return;}
+  const selections=[...document.querySelectorAll('select')];if(selections.some(x=>!x.value)){alert('Judge every item before exporting');return;}
+  const q=s=>'"'+String(s).replaceAll('"','""')+'"';
+  const lines=['reviewer,query_id,candidate_id,label',...selections.map(x=>{const v=items[Number(x.dataset.i)];return [reviewer,v.query_id,v.candidate_id,x.value].map(q).join(',')})];
+  const link=document.createElement('a');link.href=URL.createObjectURL(new Blob([lines.join('\n')+'\n'],{type:'text/csv'}));link.download=`${reviewer.replace(/[^a-z0-9_-]/gi,'_')}_labels.csv`;link.click();setTimeout(()=>URL.revokeObjectURL(link.href),2000);
+};
+</script></html>

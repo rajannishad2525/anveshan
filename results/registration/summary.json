@@ -1,0 +1,111 @@
+{
+  "protocol": {
+    "split": "train",
+    "transform_cases": [
+      {
+        "name": "shift_2px",
+        "dx": 2,
+        "dy": 0,
+        "angle_deg": 0,
+        "scale": 1.0
+      },
+      {
+        "name": "shift_5px",
+        "dx": 5,
+        "dy": 0,
+        "angle_deg": 0,
+        "scale": 1.0
+      },
+      {
+        "name": "shift_10px",
+        "dx": 10,
+        "dy": 0,
+        "angle_deg": 0,
+        "scale": 1.0
+      },
+      {
+        "name": "rotate_2deg",
+        "dx": 0,
+        "dy": 0,
+        "angle_deg": 2,
+        "scale": 1.0
+      },
+      {
+        "name": "rotate_5deg",
+        "dx": 0,
+        "dy": 0,
+        "angle_deg": 5,
+        "scale": 1.0
+      },
+      {
+        "name": "scale_2pct",
+        "dx": 0,
+        "dy": 0,
+        "angle_deg": 0,
+        "scale": 1.02
+      },
+      {
+        "name": "scale_5pct",
+        "dx": 0,
+        "dy": 0,
+        "angle_deg": 0,
+        "scale": 1.05
+      }
+    ],
+    "interpolation": "linear",
+    "border": "reflect",
+    "note": "Synthetic transform of the first-date image only; tests geometric recovery, not change-map accuracy."
+  },
+  "rows": [
+    {
+      "case": "shift_2px",
+      "n": 14,
+      "success": 14,
+      "success_rate": 1.0,
+      "median_corner_rmse_px_success_only": 0.0029028969584032893
+    },
+    {
+      "case": "shift_5px",
+      "n": 14,
+      "success": 14,
+      "success_rate": 1.0,
+      "median_corner_rmse_px_success_only": 0.00617934949696064
+    },
+    {
+      "case": "shift_10px",
+      "n": 14,
+      "success": 14,
+      "success_rate": 1.0,
+      "median_corner_rmse_px_success_only": 0.003187587484717369
+    },
+    {
+      "case": "rotate_2deg",
+      "n": 14,
+      "success": 14,
+      "success_rate": 1.0,
+      "median_corner_rmse_px_success_only": 0.026669028215110302
+    },
+    {
+      "case": "rotate_5deg",
+      "n": 14,
+      "success": 14,
+      "success_rate": 1.0,
+      "median_corner_rmse_px_success_only": 0.04063666611909866
+    },
+    {
+      "case": "scale_2pct",
+      "n": 14,
+      "success": 14,
+      "success_rate": 1.0,
+      "median_corner_rmse_px_success_only": 0.027703638188540936
+    },
+    {
+      "case": "scale_5pct",
+      "n": 14,
+      "success": 14,
+      "success_rate": 1.0,
+      "median_corner_rmse_px_success_only": 0.03191370889544487
+    }
+  ],
+  "limitation": "Synthetic same-date registration on training images; no test-pair change-screening comparison."
+}
